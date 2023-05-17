@@ -1,0 +1,23 @@
+import pyupbit
+
+# 初始化API
+client = pyupbit.Upbit(api_key, api_secret)
+
+# 获取市场深度
+depth = client.get_orderbook(tickers='KRW-BTC')
+
+# 获取账户余额
+balance = client.get_balances()
+
+# 下单
+order = client.buy_limit_order(
+    'KRW-BTC',
+    price=50000,
+    volume=1
+)
+
+# 撤单
+client.cancel_order(order['uuid'])
+
+# 获取交易历史
+trades = client.get_order('KRW-BTC', order['uuid'])
